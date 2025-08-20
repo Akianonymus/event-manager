@@ -1,5 +1,8 @@
 # Event Manager
 
+<img width="1850" height="1018" alt="image" src="https://github.com/user-attachments/assets/7c5b30f9-02cb-4451-bf9e-d3da51c4935f" />
+
+
 A simple event management application built with Next.js that allows users to create, view, and manage events with a clean, responsive interface.
 
 ## Features
