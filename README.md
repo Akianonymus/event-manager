@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Event Manager
+
+A simple event management application built with Next.js that allows users to create, view, and manage events with a clean, responsive interface.
+
+## Features
+
+- **Event Creation**: Add new events with name and date using a form with validation
+- **Event Management**: View all events in a responsive grid layout
+- **Search Functionality**: Filter events by name using the search bar
+- **Data Persistence**: Events are automatically saved to localStorage and persist between sessions
+- **Responsive Design**: Mobile-friendly interface that works across all device sizes
+- **Real-time Updates**: Events appear immediately after creation without page refresh
+
+## Technology Stack
+
+- **Frontend Framework**: Next.js 14 with App Router
+- **State Management**: Zustand for client-side state with localStorage persistence
+- **Form Handling**: React Hook Form with Zod validation
+- **UI Components**: shadcn/ui component library
+- **Styling**: Tailwind CSS for responsive design
+- **Type Safety**: Full TypeScript implementation with strict typing
+
+## Project Structure
+
+```
+src/
+├── app/
+│   └── events/
+│       └── page.tsx          # Events page route
+├── components/
+│   └── events/
+│       ├── EventForm.tsx     # Event creation form
+│       ├── EventList.tsx     # Events display grid
+│       └── EventSearch.tsx   # Search functionality
+├── store/
+│   └── events.ts             # Zustand store with persistence
+├── types/
+│   └── events.ts             # TypeScript interfaces
+└── lib/
+    └── schemas/
+        └── event.ts          # Zod validation schemas
+```
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
+
+pnpm install
+
+2. Run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
+pnpm run dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open [http://localhost:3000/events](http://localhost:3000/events) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application uses a client-side architecture with the following key components:
 
-## Learn More
+**State Management**: Zustand store manages event data with automatic localStorage persistence. The store handles CRUD operations and search state, with a custom selector hook for filtered events.
 
-To learn more about Next.js, take a look at the following resources:
+**Form Validation**: React Hook Form integrates with Zod schemas to validate event input. The form includes a custom date picker component that prevents selecting past dates.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Component Architecture**: Clean separation of concerns with dedicated components for form handling, event display, and search functionality. All components use shadcn/ui for consistent styling and accessibility.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Data Flow**: When a user submits the form, the event is added to the Zustand store, which triggers a re-render of the EventList component. The search functionality filters events in real-time as the user types.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Persistence**: The Zustand persist middleware automatically saves events to localStorage and handles date object serialization/deserialization to maintain data integrity across browser sessions.
